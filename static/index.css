@@ -1,0 +1,1003 @@
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    align-items: center;
+}
+form {
+    max-width: 800px;
+    margin:  auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-container{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.nav{
+    display: flex;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    /* padding: 8px 15px;
+    font-size: 14px; */
+    cursor: pointer;
+    border: 1px solid #ccc;
+    /* border-radius: 5px;
+    margin-right: 10px; */
+}
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    /* background-color: #4caf50; */
+    /* color: #fff; */
+}
+
+
+.Personal-info , 
+.general-habits,
+.medical-facts{
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(231, 15, 15, 0.518);
+    margin-bottom: 40px;
+}
+h1{
+    font-size: x-large;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+
+.name-container label[for="name"],
+.dob-container label[for="dob"],
+.gender-container label[for="gender"],
+.Age-container label[for="Age"],
+.Weight-container label[for="Weight"],
+.Height-container label[for="Height"],
+.AnnualIncome-container label[for="AnnualIncome"],
+.MaritalStatus-container label[for="MaritalStatus"],
+.fitness-container label[for="fitnesscontainer"], 
+.Exercise-container label[for="Exercise"], 
+.diabetic-container label[for="diabetic"], 
+.Alcohol-container label[for="Alcohol"], 
+.smoking-container label[for="smoking"], 
+.DomesticEnvironment-container label[for="DomesticEnvironment"],
+.MedicineConsumption-container label[for="MedicineConsumption"],
+.Nutrition-container label[for="Nutrition"],
+.SocialLife-container label[for="SocialLife"],
+.SleepSchedule-container label[for="SleepSchedule"],
+.ChronicMentalHealth-container label[for="ChronicMentalHealth"]
+{
+    display: block;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: auto;
+    width: 120px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    border: 2px solid #3498db;
+    box-shadow: inset 0 0 10px #3498db;
+}
+
+.Age-in-container, 
+.Weight-in-container, 
+.Height-in-container, 
+.AnnualIncome-in-container, 
+.Exercise-in-container, 
+.Alcohol-in-container, 
+.MedicineConsumption-in-container, 
+.SleepSchedule-in-container{
+    display: flex;
+}
+
+
+
+
+.Age-container label[for="Years"],
+.Weight-container label[for="kg"],
+.Height-container label[for="cm"],
+.AnnualIncome-container label[for="lpa"],
+.Exercise-container label[for="exercise-week"],
+.Alcohol-container label[for="alcohol-week"],
+.MedicineConsumption-container label[for="Medicine-day"],
+.SleepSchedule-container label[for="sleep-day"]
+{
+    display: block;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: auto;
+    width: 90px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: auto;
+    border: 2px solid #3498db;
+    box-shadow: inset 0 0 10px #3498db;
+}
+
+.Age-container input[type="range" i],
+.Weight-container input[type ="range" i],
+.Height-container input[type ="range" i],
+.AnnualIncome-container input[type ="range" i],
+.Exercise-container input[type ="range" i],
+.Alcohol-container input[type ="range" i],
+.MedicineConsumption-container input[type ="range" i],
+.SleepSchedule-container input[type ="range" i]
+{
+    appearance: none; /* Remove default styles on WebKit browsers */
+    width: 310px; /* Set the width of the range slider */
+    height: 30px; /* Set the height of the range slider */
+    border-radius: 3px; /* Add border-radius for rounded corners */
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858; /* Set the background color of the range slider track */
+    outline: none; 
+    margin-left: 20px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default styles on WebKit browsers */
+    width: 10px; /* Set the width of the range slider thumb */
+    height: 35px; /* Set the height of the range slider thumb */
+    border-radius: 3px; /* Create a circular thumb */
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 7px #4CAF50;
+    cursor: pointer; /* Change cursor on hover */
+}
+input[type="range"]:focus {
+    outline: none;
+}
+
+.Age-container input[type="number" i],
+.Weight-container input[type ="number" i],
+.Height-container input[type ="number" i],
+.AnnualIncome-container input[type ="number" i],
+.Exercise-container input[type ="number" i],
+.Alcohol-container input[type ="number" i],
+.MedicineConsumption-container input[type ="number" i],
+.SleepSchedule-container input[type ="number" i]
+{
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hide the number input arrows on WebKit browsers */
+    margin: 0; /* Remove default margin */
+}
+
+.dob-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.dob-container input{
+    width: 77%;
+    margin-left: 25px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+    text-align: center;
+}
+.dob-container input[type="date"]::-webkit-calendar-picker-indicator {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+}
+.dob-container input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+.name-container{
+    display: flex;
+    margin-bottom: 20px;
+    
+
+}
+.name-container input{
+    width: 77%;
+    margin-left: 25px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+}
+
+
+
+
+.gender-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-gender-options{
+    display: flex;
+    margin: auto;
+}
+.gender-container 
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 266px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+
+
+
+.gender-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    /* background-color: #af4c7f; */
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+.Age-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.Weight-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.Height-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.AnnualIncome-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+.MaritalStatus-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-MaritalStatus-option{
+    display: flex;
+    margin: auto;
+}
+.MaritalStatus-container 
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 123px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+
+
+.MaritalStatus-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+
+.fitness-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-fitness-option{
+    display: flex;
+    margin: auto;
+}
+
+.fitness-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 93px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.fitness-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+.Exercise-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.diabetic-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-diabetic-option{
+    display: flex;
+    margin: auto;
+}
+
+.diabetic-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 266px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.diabetic-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+.Alcohol-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.smoking-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.smoking-container select {
+    width: 83%;
+    margin-left: 25px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+    text-align: center;
+}
+.DomesticEnvironment-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-DomesticEnvironment-option{
+    display: flex;
+    margin: auto;
+}
+.DomesticEnvironment-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 94px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.DomesticEnvironment-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+
+
+.MedicineConsumption-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.Nutrition-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-Nutrition-option{
+    display: flex;
+    margin: auto;
+}
+
+.Nutrition-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 123px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.Nutrition-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+
+
+
+
+
+
+.SocialLife-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-SocialLife-option{
+    display: flex;
+    margin: auto;
+}
+
+
+.SocialLife-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 93px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.SocialLife-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+
+.SleepSchedule-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.ChronicMentalHealth-container{
+    display: flex;
+    margin-bottom: 20px;
+}
+.all-ChronicMentalHealth-option{
+    display: flex;
+    margin: auto;
+}
+
+
+.ChronicMentalHealth-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 93px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+}
+.ChronicMentalHealth-container
+input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label {
+    border: 2px solid #4CAF50;
+    box-shadow: inset 0 0 10px #4CAF50;
+}
+
+
+button {
+    padding-left : 100px ;
+    padding-right: 100px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff; 
+    border: 2px solid #3498db;
+    box-shadow:  0 0 10px #3498db;
+    font-size: 16px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-bottom: 20px;
+  }
+
+  /* Change button style on hover */
+  button:hover {
+    border: 2px solid rgba(231, 15, 15, 0.518);
+    box-shadow: inset 0 0 10px rgba(231, 15, 15, 0.518);
+  }
+
+
+
+@media (max-width: 690px){
+h1{
+    padding-bottom: 20px;
+    text-decoration: underline;
+}
+
+.Personal-info , 
+.general-habits,
+.medical-facts{
+    width: 90vw;
+    margin: 20px auto;
+    padding: 0px;
+    background-color: transparent;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: none;
+}
+
+
+
+.Age-container label[for="Years"],
+.Weight-container label[for="kg"],
+.Height-container label[for="cm"],
+.AnnualIncome-container label[for="lpa"],
+.Exercise-container label[for="exercise-week"],
+.Alcohol-container label[for="alcohol-week"],
+.MedicineConsumption-container label[for="Medicine-day"],
+.SleepSchedule-container label[for="sleep-day"]
+{
+    display: block;
+    border: 1px solid #000;
+    border-radius: 3px;
+    padding: auto;
+    width: 39.4vw;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 0;
+    border: 2px solid #3498db;
+    box-shadow: inset 0 0 10px #3498db;
+}
+
+.Age-container input[type="number" i],
+.Weight-container input[type ="number" i],
+.Height-container input[type ="number" i],
+.AnnualIncome-container input[type ="number" i],
+.Exercise-container input[type ="number" i],
+.Alcohol-container input[type ="number" i],
+.MedicineConsumption-container input[type ="number" i],
+.SleepSchedule-container input[type ="number" i]
+{
+    width: 39.4vw;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-left: 0px;
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+}
+
+.Age-container input[type="range" i],
+.Weight-container input[type ="range" i],
+.Height-container input[type ="range" i],
+.AnnualIncome-container input[type ="range" i],
+.Exercise-container input[type ="range" i],
+.Alcohol-container input[type ="range" i],
+.MedicineConsumption-container input[type ="range" i],
+.SleepSchedule-container input[type ="range" i]
+{
+    appearance: none; /* Remove default styles on WebKit browsers */
+    width: 87vw; /* Set the width of the range slider */
+    height: 30px; /* Set the height of the range slider */
+    border-radius: 3px; /* Add border-radius for rounded corners */
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858; /* Set the background color of the range slider track */
+    outline: none; 
+    margin-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.name-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.name-container input{
+    width: 87vw;
+    height: 30px;
+    margin: 0 auto;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.dob-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.dob-container input{
+    width: 87vw; 
+    height: 30px;
+    margin: 0 auto;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+    text-align: center;
+    margin-top: 4px;
+}
+.gender-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.all-gender-options{
+    display: flex;
+    margin: 0;
+    
+}
+.gender-container 
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 41vw; 
+    box-sizing: border-box;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+.all-gender-options .gender-option1 input[type="radio"] + label,
+input[type="checkbox"] + label {
+    margin-left: 0px; /* Adjust the value as needed */
+}
+
+
+
+.Age-container, 
+.Weight-container, 
+.Height-container, 
+.AnnualIncome-container, 
+.Exercise-container, 
+.Alcohol-container, 
+.MedicineConsumption-container, 
+.SleepSchedule-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+
+
+
+.MaritalStatus-container,
+.fitness-container,
+.DomesticEnvironment-container,
+.Nutrition-container,
+.SocialLife-container,
+.ChronicMentalHealth-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.all-MaritalStatus-option,
+.all-fitness-option,
+.all-DomesticEnvironment-option,
+.all-Nutrition-option,
+.all-SocialLife-option,
+.all-ChronicMentalHealth-option
+{
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.MaritalStatus-option1,
+.MaritalStatus-option2,
+.MaritalStatus-option3,
+.MaritalStatus-option4 {
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+   
+}
+
+.MaritalStatus-option2,
+.MaritalStatus-option4
+{
+    margin-left: 20px;
+}
+
+.fitness-option5,
+.DomesticEnvironment-option5,
+.SocialLife-option5,
+.ChronicMentalHealth-option5 {
+    margin-left: 0px;
+    box-sizing: border-box;
+    flex-basis: calc(100% - 20px);
+}
+
+
+
+.MaritalStatus-container 
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+
+.fitness-container
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+
+.DomesticEnvironment-container
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+
+.Nutrition-container
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+
+.SocialLife-container
+input[type="radio"] + label,
+input[type="checkbox"] + label,
+
+.ChronicMentalHealth-container
+input[type="radio"] + label,
+input[type="checkbox"] + label
+{
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 0px;
+    margin-top: 4px;
+}
+
+
+
+
+.fitness-option1,
+.fitness-option2,
+.fitness-option3,
+.fitness-option4 {
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+.fitness-option2,
+.fitness-option4 {
+    margin-left: 20px;
+}
+
+
+
+.diabetic-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.all-diabetic-option{
+    display: flex;
+    margin: 0;
+}
+
+.diabetic-container
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    display: inline-block;
+    padding: auto;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 41vw;
+    box-sizing: border-box;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 20px;
+    margin-top: 4px;
+}
+.all-diabetic-option .diabetic-option1 input[type="radio"] + label,
+input[type="checkbox"] + label {
+    margin-left: 0px; /* Adjust the value as needed */
+}
+
+.smoking-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.smoking-container select {
+    width: 87vw;
+    height: 30px; 
+    margin: 0 auto;
+    margin-left: 0px;
+    border-radius: 3px;
+    border: 2px solid #727272;
+    box-shadow: inset 0 0 10px #585858;
+    text-align: center;
+    margin-top: 4px;
+}
+
+
+.DomesticEnvironment-option1,
+.DomesticEnvironment-option2,
+.DomesticEnvironment-option3,
+.DomesticEnvironment-option4 {
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+.DomesticEnvironment-option2,
+.DomesticEnvironment-option4 {
+    margin-left: 20px;
+}
+
+
+
+.Nutrition-option1,
+.Nutrition-option2,
+.Nutrition-option3,
+.Nutrition-option4 {
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+.Nutrition-option2,
+.Nutrition-option4 {
+    margin-left: 20px;
+}
+
+
+.SocialLife-option1,
+.SocialLife-option2,
+.SocialLife-option3,
+.SocialLife-option4 {
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+.SocialLife-option2,
+.SocialLife-option4 {
+    margin-left: 20px;
+}
+
+.ChronicMentalHealth-option1,
+.ChronicMentalHealth-option3,
+.ChronicMentalHealth-option2,
+.ChronicMentalHealth-option4{
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+.ChronicMentalHealth-option2,
+.ChronicMentalHealth-option4 {
+    margin-left: 20px;
+    width: 100%;
+    flex-basis: calc(50% - 20px); /* Two options per row */
+    box-sizing: border-box;
+}
+
+
+}
+.Loader-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    display: none;
+    background: white;
+}
+
+.Loader img{
+    width: 80px;
+    height: 80px;
+
+}
+.Loader{
+    display: grid;
+    place-items: center;
+    position: relative;
+    background: white ; 
+    margin-top: -70px;
+    background-size: 20%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#warningMessage {
+    color: red;
+    display: none;
+    /* Additional styles for positioning or styling */
+}

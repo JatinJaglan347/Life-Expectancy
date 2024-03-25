@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+
+</head>
+<style>
+    /* Life Expectancy estimation box */
+    body, h1, h2, h3, p, ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: Tahoma, sans-serif;
+        background-color: #f5f5f5;
+        /* background-color: #04042c; */
+    }
+    .output{
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }     
+     
+    .output-box {
+        width: 100%;
+        height: auto;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+        border-radius: 4vh;
+        background-color: #add8e6;
+        font-size: 5vh;
+        font-family: Tahoma, sans-serif;
+        text-align: center; /* Center the text within the output box */
+        padding: 10px;
+      }
+    
+      .output-box pre {
+        margin: 0;
+        white-space: pre-wrap;
+        line-height: 50px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center; /* Align text to the left within the <pre> element */
+      }
+    
+    
+    /* Best performing areas */
+    h1{
+        padding-top: 40px;
+        padding-bottom: 20px;
+        font-size:x-large;
+        text-align: center;
+    }
+    .Performance {
+        display: flex;
+        flex-wrap: wrap; /* Allow flex items to wrap to the next line */
+    }
+    
+    .output-box-best,
+    .output-box-fair,
+    .output-box-poor {
+        flex: 1 1 content; /* Adjust flex properties for dynamic width based on content */
+        height: auto;
+        margin: 10px;
+        box-sizing: border-box;
+        border-radius: 4vh;
+        background-color: #add8e6;
+        font-size: 3vh;
+        font-style: sans-serif;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+    }
+    
+    
+    .output-box-best h2,
+    .output-box-fair h2,
+    .output-box-poor h2 {
+        text-align: center;
+        font-size: 1.3em;
+        padding: 20px;
+        font-weight: 500;
+    }
+    .output-box-best p,
+    .output-box-fair p,
+    .output-box-poor p {
+        margin-left: 20px;
+        margin-left: 10px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .output-box-best pre,
+    .output-box-fair pre,
+    .output-box-poor pre {
+        margin-left: 20px;
+        margin-left: 10px;
+        text-align: left;
+        white-space: pre-wrap;
+    }
+    
+    
+    .PerformanceArea {
+        font-weight: 900;
+    }
+    
+    .table h2{
+        padding-top: 30px;
+        font-size:x-large;
+        text-align: center;
+    }
+    
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #add8e6;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px; /* Round corners for th and td */
+    }
+    
+    th {
+        background-color: #add8e6;
+        color: #fff;
+        font-weight: 500;
+    }
+    
+    /* Responsive styles for smaller screens */
+    @media (max-width: 700px) {
+        th, td {
+            padding: 10px;
+        }
+        .output-box {
+         width: 100%;
+         height: auto;
+         word-wrap: break-word;
+         overflow-wrap: break-word;
+         box-sizing: border-box;
+         border-radius: 3vh;
+         background-color: #add8e6;
+         font-size: 2.5vh;
+         font-family: Tahoma, sans-serif;
+         text-align: center; /* Center the text within the output box */
+         padding: 10px;
+       }
+     
+       .output-box pre {
+         margin: 0;
+         white-space: pre-wrap;
+         line-height: 30px;
+         padding-bottom: 20px;
+         padding-top: 20px;
+         padding-left: 20px;
+         padding-right: 20px;
+         text-align: center; /* Align text to the left within the <pre> element */
+       }
+       h1{
+         padding-top: 40px;
+         padding-bottom: 20px;
+         font-size:2.5vh;
+         text-align: center;
+         }
+         .output-box-best,
+         .output-box-fair,
+         .output-box-poor {
+             flex: 1 1 content; /* Adjust flex properties for dynamic width based on content */
+             height: auto;
+             margin: 10px;
+             box-sizing: border-box;
+             border-radius: 4vh;
+             background-color: #add8e6;
+             font-size: 2.1vh;
+             font-style: sans-serif;
+             text-align: center;
+             justify-content: center;
+             align-items: center;
+             word-wrap: break-word;
+             overflow-wrap: break-word;
+             box-sizing: border-box;
+         }
+         .output-box-best h2,
+         .output-box-fair h2,
+         .output-box-poor h2 {
+             text-align: center;
+             font-size: 3vh;
+             padding: 20px;
+             font-weight: 500;
+         }
+ 
+    }
+ 
+    button {
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     width: 100%;
+     height: 40px;
+     padding-left : 100px ;
+     padding-right: 100px ;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     background-color: #fff; 
+     border: 2px solid #3498db;
+     box-shadow: inset 0 0 10px #3498db;
+     font-size: 16px; 
+     border: none;
+     border-radius: 5px; 
+     cursor: pointer; 
+     margin-top: 40px;
+     margin-bottom: 30px;
+     margin-left: auto;
+     margin-right: auto;
+     display: block;
+   }
+ 
+   /* Change button style on hover */
+   button:hover {
+     border: 2px solid #6c6cff;
+     box-shadow: inset 0 0 10px #090976;
+     height: 43px;
+   }
+    
+</style>
+<body >
+    <div class="output">
+        
+        <div class="output-box">
+            <p><pre> {{ Details.Name }} Your estimated life expectancy is <b>{{prediction}}-{{prediction_max}}</b> years </pre></p>
+        </div>
+        <!-- Great Performing Areas -->
+        <h1>Performance Area</h1>
+        <div class="Performance">
+            <div class="output-box-best">
+                <h2 class = "PerformanceArea">Great</h2>
+                <p><pre>{% for area in Performance.great_performing_areas %}
+{{ area }}
+{% endfor %}
+                </pre></p>
+            </div>
+            <!-- Fair Performing Areas -->
+            <div class="output-box-fair">
+                <h2 class = "PerformanceArea">Fair</h2>
+                <p><pre>{% for area in Performance.fair_performing_areas %}
+{{ area }}
+{% endfor %}
+                </pre></p>
+            </div>
+        
+            <!-- Poor Performing Areas -->
+            <div class="output-box-poor">
+                <h2 class = "PerformanceArea">Poor</h2>
+                <p><pre>{% for area in Performance.poor_performing_areas %}
+{{ area }}
+{% endfor %}
+                </pre></p>
+            </div>
+        </div>
+    
+        <div class="table">
+            <h2>Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Input</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ Details.Name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>{{ Details.gender }}</td>
+                    </tr>
+                    <tr>
+                        <td>Age</td>
+                        <td>{{ Details.Age }} Years</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>{{ Details.Weight }} Kg</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>{{ Details.Height }} Cm</td>
+                    </tr>
+                    <tr>
+                        <td>Marital Status</td>
+                        <td>{{ Details.MaritalStatus }}</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Income</td>
+                        <td>{{ Details.AnnualIncome }} LPA</td>
+                    </tr>
+                    <tr>
+                        <td>General Health</td>
+                        <td>{{ Details.fitness }}</td>
+                    </tr>
+                    <tr>
+                        <td>Exercise</td>
+                        <td>{{ Details.Exercise }} Per Week</td>
+                    </tr>
+                    <tr>
+                        <td>Diabetic</td>
+                        <td>{{ Details.diabetic }}</td>
+                    </tr>
+                    <tr>
+                        <td>Alcohol Consumption</td>
+                        <td>{{ Details.Alcohol }} Per Week</td>
+                    </tr>
+                    <tr>
+                        <td>Smoking</td>
+                        <td>{{ Details.smoking }}</td>
+                    </tr>
+                    <tr>
+                        <td>Domestic Environment</td>
+                        <td>{{ Details.DomesticEnvironment }}</td>
+                    </tr>
+                    <tr>
+                        <td>Medication Consumption</td>
+                        <td>{{ Details.MedicineConsumption }} Per Day</td>
+                    </tr>
+                    <tr>
+                        <td>Nutrition</td>
+                        <td>{{ Details.Nutrition }}</td>
+                    </tr>
+                    <tr>
+                        <td>Social Life</td>
+                        <td>{{ Details.SocialLife }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sleep Schedule</td>
+                        <td>{{ Details.SleepSchedule }} Hours Per Day</td>
+                    </tr>
+                    <tr>
+                        <td>Chronic Mental Health</td>
+                        <td>{{ Details.ChronicMentalHealth }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>life Expectancy</b></td>
+                        <td><b>{{prediction}}-{{prediction_max}}</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="window.location.href='{% url 'home' %}'"> Check Again </button>
+    </div>
+    
+</body>
+
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Document</title>
+    {% load static %}
+    <link id="css-link" rel="stylesheet" href="{% static 'darkindex.css' %}">
+</head>
+<body>
+<div id="preLoader" class="Loader-container">
+    <div class ="Loader">
+        <img src="{% static 'loading.gif' %}" alt="">
+        <h1>{{ Details.Name }} Calculating your life expectancy...</h1>
+    </div>
+    <div id="warningMessage">
+        Your internet connection is slow. Please wait.
+    </div>
+</div>
+
+
+<form method="POST" id="yourForm">
+    {% csrf_token %}
+    <div class="form-container">
+        <div class="nav" style="display:flex; justify-content: space-between; width:100% ">
+            <h1 style="margin-right:0; ">Life Expectancy</h1>
+            <div style="margin-left: auto;">
+                <label for="toggle">
+                    <i id="icon" class="fas fa-moon icon"></i>
+                </label>
+                <input type="checkbox" id="toggle">
+            </div>
+        </div>
+        <!-- Personal info -->
+        <div class="Personal-info">
+            <h1>Personal Info</h1>
+            
+            <!-- Name -->
+            <div class="name-container">
+                <label for="name">Name</label>
+                <input type="text"  class="Name" id="Name" placeholder="Name" name="Name" required>
+            </div>
+
+            <!-- DOB -->
+            <div class="dob-container">
+                <label for="dob">D.O.B</label>
+                <input type="date"  class="dob" id="dob" placeholder="Date of Birth" name="dob" onchange="updateAgeFromDOB()" required>
+            </div>
+
+            <!-- Gender -->
+            <div class="gender-container">
+                <label for="gender">Gender</label>
+                <div class="all-gender-options">
+                    <div class="gender-option1">
+                        <input type="radio" name="gender" id="male" value="male">
+                        <label for="male">Male</label>
+                        <span> </span>
+                    </div>
+                    <div class="gender-option2">
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female">Female</label>
+                        <span> </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Age -->
+            <div class="Age-container">
+                <label for="Age">Age</label>
+                <input type="range" min="18" max="80" value="25" class="Age" name="Age" id="Age" oninput="updateAgeValue()">
+                <div class="Age-in-container">
+                    <input type="number" min="18" max="80" value="25" class="Age" name="Age" id="Age_value" oninput="updateAgeRange()">
+                    <label for="Years" >Years</label>
+                </div>
+            </div>
+
+            <!-- Weight -->
+            <div class="Weight-container">
+                <label for="Weight">Weight</label>
+                <input type="range" min="40" max="200" value="60" class="Weight" name="Weight" id="Weight" oninput="updateWeightValue()">
+            
+                <div class="Weight-in-container">
+                    <input type="number" min="40" max="200" value="60" class="Weight" name="Weight" id="Weight_value" oninput="updateWeightRange()">
+                    <label for="kg">Kg</label>
+                </div>
+            </div>
+
+            <!-- Height -->
+            <div class="Height-container">
+                <label for="Height">Height</label>
+                <input type="range" min="130" max="240" value="167" class="Height" name="Height" id="Height" oninput="updateHeightValue()">
+            
+                <div class="Height-in-container">
+                    <input type="number" min="130" max="240" value="167" class="Height" name="Height" id="Height_value" oninput="updateHeightRange()">
+                    <label for="cm">Cm</label>
+                </div>
+            </div> 
+
+            <!-- Annual Income -->
+            <div class="AnnualIncome-container">
+                <label for="AnnualIncome">Income</label>
+                <input type="range" min="2" max="100" value="8" name="AnnualIncome" class="AnnualIncome" id="AnnualIncome" oninput="updateAnnualIncomeValue()">
+            
+                <div class="AnnualIncome-in-container">
+                    <input type="number" min="2" max="100" value="8" class="AnnualIncome" name="AnnualIncome" id="AnnualIncome_value" oninput="updateAnnualIncomeRange()">
+                    <label for="lpa">LPA</label>
+                </div>
+            </div>
+
+            <!-- Marital Status -->
+            <div class="MaritalStatus-container">
+                <label for="MaritalStatus">Marital Status</label>
+                <div class="all-MaritalStatus-option">
+                    <div class="MaritalStatus-option1">
+                        <input type="radio" name="MaritalStatus" id="married" value="married" >
+                        <label for="married">Married</label>
+                    </div>
+                    <div class="MaritalStatus-option2">
+                        <input type="radio" name="MaritalStatus" id="not_married" value="not_married" >
+                        <label for="not_married">Not Married</label>
+                    </div>
+                    <div class="MaritalStatus-option3">
+                        <input type="radio" name="MaritalStatus" id="divorced" value="divorced" >
+                        <label for="divorced">Divorced</label>
+                    </div>
+                    <div class="MaritalStatus-option4">
+                        <input type="radio" name="MaritalStatus" id="prefer_not_to_say" value="prefer_not_to_say">
+                        <label for="prefer_not_to_say">Prefer Not to Say</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- General Habits -->
+        <div class="general-habits">
+            <h1>General Habits</h1>
+
+            <!-- Fitness (General Health) -->
+            <div class="fitness-container">
+                <label for="fitnesscontainer">General Health</label>
+                <div class="all-fitness-option">
+                    <div class="fitness-option1">
+                        <input type="radio" name="fitness" id="poor" value="poor" >
+                        <label for="poor">Poor</label>
+                    </div>
+                    <div class="fitness-option2">
+                        <input type="radio" name="fitness" id="fair" value="fair" >
+                        <label for="fair">Fair</label>
+                    </div>
+                    <div class="fitness-option3">
+                        <input type="radio" name="fitness" id="good" value="good" >
+                        <label for="good">Good</label>
+                    </div>
+                    <div class="fitness-option4">
+                        <input type="radio" name="fitness" id="VeryGood" value="VeryGood" >
+                        <label for="VeryGood">Very Good</label>
+                    </div>
+                    <div class="fitness-option5">
+                        <input type="radio" name="fitness" id="excellent" value="excellent" >
+                        <label for="excellent">Excellent</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise -->
+            <div class="Exercise-container">
+                <label for="Exercise">Exercise count</label>
+                <input type="range" min="0" max="7" value="2" class="Exercise" name="Exercise" id="Exercise" oninput="updateExerciseValue()">
+            
+                <div class="Exercise-in-container">
+                    <input type="number" min="0" max="7" value="2" class="Exercise" name="Exercise" id="Exercise_value" oninput="updateExerciseRange()">
+                    <label for="exercise-week">per Week</label>
+                </div>
+            </div>
+
+            <!-- Diabetic -->
+            <div class="diabetic-container">
+                <label for="diabetic">Diabetic</label>
+                <div class="all-diabetic-option">
+                    <div class="diabetic-option1">
+                        <input type="radio" name="diabetic" id="Yes" value="Yes">
+                        <label for="Yes">Yes</label>
+                    </div>
+                    <div class="diabetic-option2">
+                        <input type="radio" name="diabetic" id="No" value="No">
+                        <label for="No">No</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alcohol -->
+            <div class="Alcohol-container">
+                <label for="Alcohol">Alcohol</label>
+                <input type="range" min="0" max="12" value="1" class="Alcohol" name="Alcohol" id="Alcohol" oninput="updateAlcoholValue()">
+            
+                <div class="Alcohol-in-container">
+                    <input type="number" min="0" max="12" value="1" class="Alcohol" name="Alcohol" id="Alcohol_value" oninput="updateAlcoholRange()">
+                    <label for="alcohol-week">per Week</label>
+                </div>
+            </div>
+
+            <div class="smoking-container">
+                <label for="smoking">Smoking</label>
+                <select id="smoking" name="smoking">
+                    <option id="never" value="never">Never</option>
+                    <option id="quit_less_than_one_year_ago" value="quit_less_than_one_year_ago">Quit less than one year ago</option>
+                    <option id="quit_one_two_nine_year_ago" value="quit_one_two_nine_year_ago">Quit 1-9 years ago</option>
+                    <option id="QuitGreaterThan10YearAgo" value="QuitGreaterThan10YearAgo">Quit more than 10 years ago</option>
+                    <option id="StillHalfPackOrLess" value="StillHalfPackOrLess">Still smoke half pack or less</option>
+                    <option id="StillOnePack" value="StillOnePack">Still smoke one pack</option>
+                    <option id="StillMoreThanOnePack" value="StillMoreThanOnePack">Still smoke more than one pack</option>
+                </select>
+            </div>
+            
+        </div>
+        <!-- Medical facts -->
+        <div class="medical-facts">
+            <h1>Medical facts</h1>
+            <!-- Domestic Environment -->
+            <div class="DomesticEnvironment-container">
+                <label for="DomesticEnvironment">Environment</label>
+                    <div class="all-DomesticEnvironment-option">
+                    <div class="DomesticEnvironment-option1">
+                        <input type="radio" name="DomesticEnvironment" id="QuiteToxic" value="QuiteToxic">
+                        <label for="QuiteToxic">Quite Toxic</label>
+                    </div>
+                    <div class="DomesticEnvironment-option2">
+                        <input type="radio" name="DomesticEnvironment" id="PreferNotToSayDomesticEnvironment"
+                            value="PreferNotToSayDomesticEnvironment">
+                        <label for="PreferNotToSayDomesticEnvironment">Not to Say</label>
+                    </div>
+                    <div class="DomesticEnvironment-option3">
+                        <input type="radio" name="DomesticEnvironment" id="HealthyVibes" value="HealthyVibes">
+                        <label for="HealthyVibes">Healthy</label>
+                    </div>
+                    <div class="DomesticEnvironment-option4">
+                        <input type="radio" name="DomesticEnvironment" id="Peaceful" value="Peaceful">
+                        <label for="Peaceful">Peaceful</label>
+                    </div>
+                    <div class="DomesticEnvironment-option5">
+                        <input type="radio" name="DomesticEnvironment" id="Uplifting" value="Uplifting">
+                        <label for="Uplifting">Uplifting</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medicine Consumption -->
+            <div class="MedicineConsumption-container">
+                <label for="MedicineConsumption">Medicine</label>
+                <input type="range" min="0" max="5" value="1" class="MedicineConsumption" name="MedicineConsumption" id="MedicineConsumption" oninput="updateMedicineConsumptionValue()">
+            
+                <div class="MedicineConsumption-in-container">
+                    <input type="number" min="0" max="5" value="1" class="MedicineConsumption" name="MedicineConsumption" id="MedicineConsumption_value" oninput="updateMedicineConsumptionRange()">
+                    <label for="Medicine-day">per Day</label>
+                </div>
+            </div>
+
+            <!-- Nutrition -->
+            <div class="Nutrition-container">
+                <label for="Nutrition">Nutrition</label>
+                <div class="all-Nutrition-option">
+                    <div class="Nutrition-option1">
+                        <input type="radio" name="Nutrition" id="JunkFoodAddict" value="JunkFoodAddict">
+                        <label for="JunkFoodAddict">Junk Food</label>
+                    </div>
+                    <div class="Nutrition-option2">
+                        <input type="radio" name="Nutrition" id="HealthyForTheMostPart" value="HealthyForTheMostPart">
+                        <label for="HealthyForTheMostPart">Healthy Mostly</label>
+                    </div>
+                    <div class="Nutrition-option3">
+                        <input type="radio" name="Nutrition" id="OnlyOnSelectedDates" value="OnlyOnSelectedDates">
+                        <label for="OnlyOnSelectedDates">Selected Dates</label>
+                    </div>
+                    <div class="Nutrition-option4">
+                        <input type="radio" name="Nutrition" id="NoJunkFood" value="NoJunkFood">
+                        <label for="NoJunkFood">No Junk Food</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Life -->
+            <div class="SocialLife-container">
+                <label for="SocialLife">Social Life</label>
+                <div class="all-SocialLife-option">
+                    <div class="SocialLife-option1">
+                        <input type="radio" name="SocialLife" id="None" value="None">
+                        <label for="None">None</label>
+                    </div>
+                    <div class="SocialLife-option2">
+                        <input type="radio" name="SocialLife" id="Barely" value="Barely">
+                        <label for="Barely">Barely</label>
+                    </div>
+                    <div class="SocialLife-option3">
+                        <input type="radio" name="SocialLife" id="Healthy" value="Healthy">
+                        <label for="Healthy">Healthy</label>
+                    </div>
+                    <div class="SocialLife-option4">
+                        <input type="radio" name="SocialLife" id="ManyCloseFriends" value="ManyCloseFriends">
+                        <label for="ManyCloseFriends">Crew</label>
+                    </div>
+                    <div class="SocialLife-option5">
+                        <input type="radio" name="SocialLife" id="SocialFreak" value="SocialFreak">
+                        <label for="SocialFreak">Social Freak</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sleep Schedule -->
+            <div class="SleepSchedule-container">
+                <label for="SleepSchedule">Hours of Sleep</label>
+                <input type="range" min="0" max="12" value="7" class="SleepSchedule" name="SleepSchedule" id="SleepSchedule" oninput="updateSleepScheduleValue()">
+            
+                <div class="SleepSchedule-in-container">
+                    <input type="number" min="0" max="12" value="7" class="SleepSchedule" name="SleepSchedule" id="SleepSchedule_value" oninput="updateSleepScheduleRange()">
+                    <label for="sleep-day">per Day</label>
+                </div>
+            </div>
+
+            <!-- Chronic Mental Health -->
+            <div class="ChronicMentalHealth-container">
+                <label for="ChronicMentalHealth">Mental Health</label>
+                <div class="all-ChronicMentalHealth-option">
+                    <div class="ChronicMentalHealth-option1">
+                        <input type="radio" name="ChronicMentalHealth" id="Depressed-Pessimistic" value="Depressed-Pessimistic">
+                        <label for="Depressed-Pessimistic">Depressed</label>
+                    </div>
+                    <div class="ChronicMentalHealth-option2">
+                        <input type="radio" name="ChronicMentalHealth" id="Stressed-Worried" value="Stressed-Worried">
+                        <label for="Stressed-Worried">Stressed</label>
+                    </div>
+                    <div class="ChronicMentalHealth-option3">
+                        <input type="radio" name="ChronicMentalHealth" id="Complex" value="Complex">
+                        <label for="Complex">Complex</label>
+                    </div>
+                    <div class="ChronicMentalHealth-option4">
+                        <input type="radio" name="ChronicMentalHealth" id="Positive" value="Positive">
+                        <label for="Positive">Positive</label>
+                    </div>
+                    <div class="ChronicMentalHealth-option5">
+                        <input type="radio" name="ChronicMentalHealth" id="Calm" value="Calm">
+                        <label for="Calm">Calm</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    document.getElementById("Age").oninput = function () {
+        document.getElementById("Age_value").innerHTML = this.value;
+    }
+
+    document.getElementById("Weight").oninput = function () {
+        document.getElementById("Weight_value").innerHTML = this.value;
+    }
+
+    document.getElementById("Height").oninput = function () {
+        document.getElementById("Height_value").innerHTML = this.value;
+    }
+    document.getElementById("AnnualIncome").oninput = function () {
+        document.getElementById("AnnualIncome_value").innerHTML = this.value;
+    }
+    document.getElementById("Exercise").oninput = function () {
+        document.getElementById("Exercise_value").innerHTML = this.value;
+    }
+    document.getElementById("Alcohol").oninput = function () {
+        document.getElementById("Alcohol_value").innerHTML = this.value;
+    }
+    document.getElementById("MedicineConsumption").oninput = function () {
+        document.getElementById("MedicineConsumption_value").innerHTML = this.value;
+    }
+    document.getElementById("SleepSchedule").oninput = function () {
+        document.getElementById("SleepSchedule_value").innerHTML = this.value;
+    }
+
+    //toggle
+    const toggle = document.getElementById('toggle');
+        const cssLink = document.getElementById('css-link');
+        const icon = document.getElementById('icon');
+
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                cssLink.href = "{% static 'index.css' %}";
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                cssLink.href = "{% static 'darkindex.css' %}";
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+
+    var ageRange = document.getElementById('Age');
+    var ageValue = document.getElementById('Age_value');
+    function updateAgeRange() {
+        var inputValue = document.getElementById('Age_value').value;
+        document.getElementById('Age').value = inputValue;
+    }
+    function updateAgeInputs() {
+
+        var value = parseInt(ageRange.value);
+        // Update both inputs
+        ageRange.value = value;
+        ageValue.value = value;
+    }
+    ageRange.addEventListener('input', updateAgeInputs);
+
+
+
+
+    // Weight
+    var weightRange = document.getElementById('Weight');
+    var weightValue = document.getElementById('Weight_value');
+
+    function updateWeightRange() {
+        var weightInputValue = document.getElementById('Weight_value').value;
+        weightRange.value = weightInputValue;
+    }
+
+    function updateWeightInputs() {
+        var value = parseInt(weightRange.value);
+        // Update both inputs
+        weightRange.value = value;
+        weightValue.value = value;
+    }
+
+    weightRange.addEventListener('input', updateWeightInputs);
+
+    // Height
+    var heightRange = document.getElementById('Height');
+    var heightValue = document.getElementById('Height_value');
+
+    function updateHeightRange() {
+        var heightInputValue = document.getElementById('Height_value').value;
+        heightRange.value = heightInputValue;
+    }
+
+    function updateHeightInputs() {
+        var value = parseInt(heightRange.value);
+        // Update both inputs
+        heightRange.value = value;
+        heightValue.value = value;
+    }
+
+    heightRange.addEventListener('input', updateHeightInputs);
+
+    // Annual Income
+    var annualIncomeRange = document.getElementById('AnnualIncome');
+    var annualIncomeValue = document.getElementById('AnnualIncome_value');
+
+    function updateAnnualIncomeRange() {
+        var incomeInputValue = document.getElementById('AnnualIncome_value').value;
+        annualIncomeRange.value = incomeInputValue;
+    }
+
+    function updateAnnualIncomeInputs() {
+        var value = parseInt(annualIncomeRange.value);
+        // Update both inputs
+        annualIncomeRange.value = value;
+        annualIncomeValue.value = value;
+    }
+
+    annualIncomeRange.addEventListener('input', updateAnnualIncomeInputs);
+
+
+
+
+    // Exercise
+    var exerciseRange = document.getElementById('Exercise');
+    var exerciseValue = document.getElementById('Exercise_value');
+
+    function updateExerciseRange() {
+        var exerciseInputValue = document.getElementById('Exercise_value').value;
+        exerciseRange.value = exerciseInputValue;
+    }
+
+    function updateExerciseInputs() {
+        var value = parseInt(exerciseRange.value);
+        // Update both inputs
+        exerciseRange.value = value;
+        exerciseValue.value = value;
+    }
+
+    exerciseRange.addEventListener('input', updateExerciseInputs);
+
+    // Alcohol
+    var alcoholRange = document.getElementById('Alcohol');
+    var alcoholValue = document.getElementById('Alcohol_value');
+
+    function updateAlcoholRange() {
+        var alcoholInputValue = document.getElementById('Alcohol_value').value;
+        alcoholRange.value = alcoholInputValue;
+    }
+
+    function updateAlcoholInputs() {
+        var value = parseInt(alcoholRange.value);
+        // Update both inputs
+        alcoholRange.value = value;
+        alcoholValue.value = value;
+    }
+
+    alcoholRange.addEventListener('input', updateAlcoholInputs);
+
+
+    // Medicine Consumption
+    var medicineConsumptionRange = document.getElementById('MedicineConsumption');
+    var medicineConsumptionValue = document.getElementById('MedicineConsumption_value');
+
+    function updateMedicineConsumptionRange() {
+        var medicineConsumptionInputValue = document.getElementById('MedicineConsumption_value').value;
+        medicineConsumptionRange.value = medicineConsumptionInputValue;
+    }
+
+    function updateMedicineConsumptionInputs() {
+        var value = parseInt(medicineConsumptionRange.value);
+        // Update both inputs
+        medicineConsumptionRange.value = value;
+        medicineConsumptionValue.value = value;
+    }
+
+    medicineConsumptionRange.addEventListener('input', updateMedicineConsumptionInputs);
+
+
+    // Sleep Schedule
+    var sleepScheduleRange = document.getElementById('SleepSchedule');
+    var sleepScheduleValue = document.getElementById('SleepSchedule_value');
+
+    function updateSleepScheduleRange() {
+        var sleepScheduleInputValue = document.getElementById('SleepSchedule_value').value;
+        sleepScheduleRange.value = sleepScheduleInputValue;
+    }
+
+    function updateSleepScheduleInputs() {
+        var value = parseInt(sleepScheduleRange.value);
+        // Update both inputs
+        sleepScheduleRange.value = value;
+        sleepScheduleValue.value = value;
+    }
+
+    sleepScheduleRange.addEventListener('input', updateSleepScheduleInputs);
+
+    function updateAgeFromDOB() {
+        var dob = new Date(document.getElementById('dob').value);
+        var currentDate = new Date();
+        var age = currentDate.getFullYear() - dob.getFullYear();
+
+        // Adjust age if the birthday hasn't occurred yet this year
+        if (currentDate.getMonth() < dob.getMonth() || (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        // Set the calculated age to both range and number inputs
+        document.getElementById('Age').value = age;
+        document.getElementById('Age_value').value = age;
+    }
+
+
+    function updateDOBFromAge() {
+        var age = parseInt(document.getElementById('Age_value').value);
+        var currentDate = new Date();
+        var birthYear = currentDate.getFullYear() - age;
+    
+        // Get the existing month and day values from the dob input
+        var dobInput = document.getElementById('dob');
+        var existingMonth = dobInput.value.substring(5, 7);
+        var existingDay = dobInput.value.substring(8, 10);
+    
+        // Set the calculated birth year along with existing month and day
+        dobInput.value = birthYear + "-" + existingMonth + "-" + existingDay;
+    }
+    
+    // Event listener for changes in the number input for age
+    document.getElementById('Age_value').addEventListener('input', function () {
+        updateDOBFromAge();
+    });
+    
+    // Event listener for changes in the range input for age
+    document.getElementById('Age').addEventListener('input', function () {
+        updateDOBFromAge();
+    });
+    
+    // Function to update age based on the selected DOB
+    function updateAgeFromDOB() {
+        var dob = new Date(document.getElementById('dob').value);
+        var currentDate = new Date();
+        var age = currentDate.getFullYear() - dob.getFullYear();
+    
+        // Adjust age if the birthday hasn't occurred yet this year
+        if (currentDate.getMonth() < dob.getMonth() || (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+            age--;
+        }
+    
+        // Set the calculated age to both range and number inputs
+        document.getElementById('Age').value = age;
+        document.getElementById('Age_value').value = age;
+    }
+
+
+    
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("yourForm");
+        var loader = document.getElementById("preLoader");
+        var warningMessage = document.getElementById("warningMessage");
+        var timer;
+
+        form.addEventListener("submit", function () {
+            // Show the preloader when the form is submitted
+            loader.style.display = "block";
+
+            // Set a timer to show a warning if the process takes more than 1 second
+            timer = setTimeout(function () {
+                warningMessage.style.display = "block";
+            }, 100);
+
+            // You can add additional logic here, such as form validation or AJAX requests
+
+            // Continue with your existing form submission logic
+            // ...
+
+            // After the form is submitted, clear the timer
+            clearTimeout(timer);
+
+            // Hide the preloader
+            
+        });
+    });
+
+
+    
+</script>
+
+
+</body>
+
+</html>
